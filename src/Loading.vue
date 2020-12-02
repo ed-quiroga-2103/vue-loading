@@ -1,7 +1,6 @@
 <template>
-  <div class="loading"
-       :style="`background-color: ${options.bg};`"
-       v-show="isLoading">
+  <div :class="{ loading: true, fadeout: !isLoading}"
+       :style="`background-color: ${options.bg};`">
     <template v-if="options.slot">
       <div v-html="options.slot"></div>
     </template>
@@ -54,5 +53,16 @@ export default {
 .loading i {
   position: absolute;
   opacity: 1;
+}
+
+.fadeout {
+  animation: fadeout 2s forwards;
+}
+
+@keyframes fadeout {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 </style>
